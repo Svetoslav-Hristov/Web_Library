@@ -1,0 +1,28 @@
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Web_Library.Models.Contracts;
+
+namespace Web_Library.Models
+{
+    public class UserBook:IUserBook
+    {
+        public DateOnly ReservedOn { get; set; }
+
+        public DateOnly ReservationExpiresOn { get; set; }
+
+        public DateOnly PickUpDate { get; set; }
+
+        public DateOnly ReturnDate { get; set; }
+
+
+        [ForeignKey(nameof(User))]
+        public Guid UserId { get; set; }
+
+        public virtual User User { get; set; } = null!;
+
+        [ForeignKey(nameof(Book))]
+        public Guid BookId { get; set; }
+
+        public virtual Book Book { get; set; } = null!;
+
+    }
+}
