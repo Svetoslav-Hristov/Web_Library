@@ -10,6 +10,10 @@
         Biography = 5,
         History = 6,
         Programming = 7,
-        Other = 8,
+        Philosophy = 8,
+        Poetry = 9,
+        ClassicalLiterature = 10,
+        Thriller = 11,
+        Other = 12,
     }
 }
