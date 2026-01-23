@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Book>
+@{
+    ViewData["Title"] = "Books";
+}
+
+<div class="d-flex align-items-center justify-content-between mb-3">
+    <h1 class="mb-0">Books</h1>
+
+    <a class="btn btn-primary" asp-controller="Books" asp-action="Create">
+        + Add Book
+    </a>
+</div>
+
+@if (!Model.Any())
+{
+    <p class="text-muted">No books yet.</p>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Book</th>
+                <th style="width: 180px;">AuthorName</th>
+                <th style="width: 180px;">Year</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Book b in Model)
+            {
+                <tr>
+                    <td>@b.Title</td>
+                    <td>@b.Author</td>
+                    <td> - </td>
+                    <td>
+                        <a class="btn btn-sm btn-outline-primary"
+                           asp-controller="Books"
+                           asp-action="Details"
+                           asp-route-id=@b.Id>
+                            Details
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

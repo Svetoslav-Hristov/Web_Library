@@ -3,7 +3,6 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Web_Library.Data;
 
@@ -12,11 +11,9 @@ using Web_Library.Data;
 namespace Web_Library.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    [Migration("20260121135047_InitialDataSeed")]
-    partial class InitialDataSeed
+    partial class LibraryDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,6 +33,14 @@ namespace Web_Library.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("CoverImageUrl")
+                        .HasMaxLength(2048)
+                        .HasColumnType("nvarchar(2048)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
                     b.Property<int>("Genre")
                         .HasColumnType("int");
 
@@ -43,6 +48,9 @@ namespace Web_Library.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -53,169 +61,206 @@ namespace Web_Library.Migrations
                         {
                             Id = new Guid("b5cebf85-e61a-4e95-b688-a2b0e6893bed"),
                             Author = "J.R.R. Tolkien",
+                            Description = "The Hobbit is a tale of high adventure, undertaken by a company of dwarves in search of dragon-guarded gold. A reluctant partner in this perilous quest is Bilbo Baggins, a comfort-loving unambitious hobbit, who surprises even himself by his resourcefulness and skill as a burglar.",
                             Genre = 0,
-                            Title = "The Hobbit"
+                            Title = "The Hobbit",
+                            Year = 1937
                         },
                         new
                         {
                             Id = new Guid("eeb61727-49d9-4b67-a836-1d3eacc4f08d"),
                             Author = "George Orwell",
+                            Description = "Nineteen Eighty-Four: A Novel, often referred to as 1984, is a dystopian social science fiction novel by the English novelist George Orwell (the pen name of Eric Arthur Blair). It was published on 8 June 1949 by Secker & Warburg as Orwell's ninth and final book completed in his lifetime. Thematically, Nineteen Eighty-Four centres on the consequences of totalitarianism, mass surveillance, and repressive regimentation of persons and behaviours within society. Orwell, himself a democratic socialist, modelled the authoritarian government in the novel after Stalinist Russia. More broadly, the novel examines the role of truth and facts within politics and the ways in which they are manipulated.",
                             Genre = 1,
-                            Title = "1984"
+                            Title = "1984",
+                            Year = 1949
                         },
                         new
                         {
                             Id = new Guid("cda5bf3e-e99c-4a9a-bc3c-889ec28b7031"),
                             Author = "Aldous Huxley",
+                            Description = "Originally published in 1932, this outstanding work of literature is more crucial and relevant today than ever before. Cloning, feel-good drugs, antiaging programs, and total social control through politics, programming, and media -- has Aldous Huxley accurately predicted our future? With a storyteller's genius, he weaves these ethical controversies in a compelling narrative that dawns in the year 632 AF (After Ford, the deity). When Lenina and Bernard visit a savage reservation, we experience how Utopia can destroy humanity. A powerful work of speculative fiction that has enthralled and terrified readers for generations, Brave New World is both a warning to be heeded and thought-provoking yet satisfying entertainment. - Container.",
                             Genre = 1,
-                            Title = "Brave New World"
+                            Title = "Brave New World",
+                            Year = 1932
                         },
                         new
                         {
                             Id = new Guid("f057357a-d690-48ce-a4cc-e1a9748cc63c"),
                             Author = "Robert C. Martin",
                             Genre = 7,
-                            Title = "Clean Code"
+                            Title = "Clean Code",
+                            Year = 2008
                         },
                         new
                         {
                             Id = new Guid("43f42ae2-7f5f-4944-871e-52d9fd057e6a"),
                             Author = "Andrew Hunt",
+                            Description = "Ward Cunningham Straight from the programming trenches, The Pragmatic Programmer cuts through the increasing specialization and technicalities of modern software development to examine the core process--taking a requirement and producing working, maintainable code that delights its users. It covers topics ranging from personal responsibility and career development to architectural techniques for keeping your code flexible and easy to adapt and reuse. Read this book, and you’ll learn how to Fight software rot; Avoid the trap of duplicating knowledge; Write flexible, dynamic, and adaptable code; Avoid programming by coincidence; Bullet-proof your code with contracts, assertions, and exceptions; Capture real requirements; Test ruthlessly and effectively; Delight your users; Build teams of pragmatic programmers; and Make your developments more precise with automation. Written as a series of self-contained sections and filled with entertaining anecdotes, thoughtful examples, and interesting analogies, The Pragmatic Programmer illustrates the best practices and major pitfalls of many different aspects of software development. Whether you’re a new coder, an experienced program.",
                             Genre = 7,
-                            Title = "The Pragmatic Programmer"
+                            Title = "The Pragmatic Programmer",
+                            Year = 1999
                         },
                         new
                         {
                             Id = new Guid("5571dd6b-512c-4d64-8620-cf469800d93c"),
                             Author = "Dan Brown",
+                            Description = "The Da Vinci Code is a 2003 mystery thriller novel by Dan Brown. It is Brown's second novel to include the character Robert Langdon: the first was his 2000 novel Angels & Demons. The Da Vinci Code follows \"symbologist\" Robert Langdon and cryptologist Sophie Neveu after a murder in the Louvre Museum in Paris causes them to become involved in a battle between the Priory of Sion and Opus Dei over the possibility of Jesus Christ and Mary Magdalene having had a child together.",
                             Genre = 11,
-                            Title = "The Da Vinci Code"
+                            Title = "The Da Vinci Code",
+                            Year = 2003
                         },
                         new
                         {
                             Id = new Guid("e2c70baa-d665-4ace-9409-6b053e41ed4f"),
                             Author = "Arthur Conan Doyle",
                             Genre = 2,
-                            Title = "Sherlock Holmes"
+                            Title = "Sherlock Holmes",
+                            Year = 1892
                         },
                         new
                         {
                             Id = new Guid("3fb3a2e4-5968-4eac-9838-eec211167561"),
                             Author = "Stephen King",
+                            Description = "Derry: A small city in Maine, place as hauntingly familiar as your own hometown, only in Derry the haunting is real...\r\n\r\nThey were seven teenagers when they first stumbled upon the horror. Now they are grown-up men and women who have gone out into the big world to gain success and happiness. But none of them can withstand the force that has drawn them back to Derry to face the nightmare without an end, and the evil without a name...",
                             Genre = 4,
-                            Title = "It"
+                            Title = "It",
+                            Year = 1986
                         },
                         new
                         {
                             Id = new Guid("65f62571-ee92-4e56-b6b9-dd7a8efe8e3f"),
                             Author = "Stephen King",
+                            Description = "The Shining is a 1977 horror novel by American author Stephen King. It is King's third published novel and first hardback bestseller; its success firmly established King as a preeminent author in the horror genre. The setting and characters are influenced by King's personal experiences, including both his visit to The Stanley Hotel in 1974 and his struggle with alcoholism. The book was followed by a sequel, Doctor Sleep, published in 2013.\r\n\r\nThe Shining centers on the life of Jack Torrance, a struggling writer and recovering alcoholic who accepts a position as the off-season caretaker of the historic Overlook Hotel in the Colorado Rockies. His family accompanies him on this job, including his young son Danny Torrance, who possesses \"the shining\", an array of psychic abilities that allow Danny to see the hotel's horrific past. Soon, after a winter storm leaves them snowbound, the supernatural forces inhabiting the hotel influence Jack's sanity, leaving his wife and son in incredible danger.\r\n\r\n",
                             Genre = 4,
-                            Title = "The Shining"
+                            Title = "The Shining",
+                            Year = 1977
                         },
                         new
                         {
                             Id = new Guid("8c263c22-48fd-4ecd-9aa9-e01f2d8c0745"),
                             Author = "Paulo Coelho",
+                            Description = "The Alchemist details the journey of a young Andalusian shepherd boy named Santiago. Santiago, believing a recurring dream to be prophetic, decides to travel to the pyramids of Egypt to find treasure. On the way, he encounters love, danger, opportunity and disaster. One of the significant characters that he meets is an old king named Melchizedek who tells him that \"When you want something, all the universe conspires in helping you to achieve it.\" This is the core philosophy and motif of the book.",
                             Genre = 8,
-                            Title = "The Alchemist"
+                            Title = "The Alchemist",
+                            Year = 1988
                         },
                         new
                         {
                             Id = new Guid("f315b770-aba6-4dd3-b9f0-c8b3d0dce787"),
                             Author = "Yuval Noah Harari",
                             Genre = 6,
-                            Title = "Sapiens"
+                            Title = "Sapiens",
+                            Year = 2011
                         },
                         new
                         {
                             Id = new Guid("4a8a88ba-79f6-44d6-8701-0c4d6bd7e412"),
                             Author = "Yuval Noah Harari",
                             Genre = 6,
-                            Title = "Homo Deus"
+                            Title = "Homo Deus",
+                            Year = 2015
                         },
                         new
                         {
                             Id = new Guid("ed7d0f41-9d87-4c33-a0c7-3620ed591fe3"),
                             Author = "Walter Isaacson",
                             Genre = 5,
-                            Title = "Steve Jobs"
+                            Title = "Steve Jobs",
+                            Year = 2011
                         },
                         new
                         {
                             Id = new Guid("4f73e635-6290-4152-8c9b-cbcd4d09f496"),
                             Author = "Andy Weir",
                             Genre = 1,
-                            Title = "The Martian"
+                            Title = "The Martian",
+                            Year = 2011
                         },
                         new
                         {
                             Id = new Guid("f15ea439-f2a1-40ac-8278-1056d7a75a52"),
                             Author = "Frank Herbert",
+                            Description = "Set on the desert planet Arrakis, Dune is the story of the boy Paul Atreides, heir to a noble family tasked with ruling an inhospitable world where the only thing of value is the \"spice\" melange, a drug capable of extending life and enhancing consciousness. Coveted across the known universe, melange is a prize worth killing for...\r\n\r\nWhen House Atreides is betrayed, the destruction of Paul's family will set the boy on a journey toward a destiny greater than he could ever have imagined. And as he evolves into the mysterious man known as Muad'Dib, he will bring to fruition humankind's most ancient and unattainable dream.\r\n\r\nA stunning blend of adventure and mysticism, environmentalism and politics, Dune won the first Nebula Award, shared the Hugo Award, and formed the basis of what is undoubtedly the grandest epic in science fiction.",
                             Genre = 0,
-                            Title = "Dune"
+                            Title = "Dune",
+                            Year = 1965
                         },
                         new
                         {
                             Id = new Guid("1192f7d6-3197-4a88-87ce-a251dd1cf0b3"),
                             Author = "Patrick Rothfuss",
+                            Description = "The Name of the Wind, also called The Kingkiller Chronicle: Day One, is a heroic fantasy novel written by American author Patrick Rothfuss. It is the first book in the ongoing fantasy trilogy The Kingkiller Chronicle. It was published on March 27, 2007, by DAW Books, the novel has been hailed as a masterpiece of high fantasy.\r\n\r\nThe story begins the tale of Kvothe (pronounced \"quothe\"), a young man who becomes the most notorious magician his world has ever known. Kvothe narrates his own journey, from his childhood in a troupe of traveling players to his years as a near-feral orphan in a crime-ridden city, and his daring entrance into a prestigious and perilous school of magic.\r\n\r\nPatrick Rothfuss's debut novel has been praised for its fresh and earthy originality, transporting readers into the mind of a wizard and the world that shaped him. It explores the truth behind the legend of a hero and how one can become entangled in their own mythology. Rothfuss's powerful storytelling and robust writing have earned him comparisons to renowned fantasy authors such as Tad Williams, George R. R. Martin, and Robert Jordan.",
                             Genre = 0,
-                            Title = "The Name of the Wind"
+                            Title = "The Name of the Wind",
+                            Year = 2007
                         },
                         new
                         {
                             Id = new Guid("8be4237a-cadb-4f8c-bfd8-68eab7b7c64e"),
                             Author = "Harper Lee",
+                            Description = "One of the best-loved stories of all time, To Kill a Mockingbird has been translated into more than 40 languages, sold more than 30 million copies worldwide, served as the basis for an enormously popular motion picture, and voted one of the best novels of the 20th century by librarians across the United States. A gripping, heart-wrenching, and wholly remarkable tale of coming-of-age in a South poisoned by virulent prejudice, it views a world of great beauty and savage inequities through the eyes of a young girl, as her father -- a crusading local lawyer -- risks everything to defend a black man unjustly accused of a terrible crime.\r\n\r\nLawyer Atticus Finch defends Tom Robinson -- a black man charged with the rape of a white girl. Writing through the young eyes of Finch's children Scout and Jem, Harper Lee explores with rich humor and unswerving honesty the irrationality of adult attitudes toward race and class in small-town Alabama during the mid-1930s Depression years. The conscience of a town steeped in prejudice, violence, and hypocrisy is pricked by the stamina and quiet heroism of one man's struggle for justice. But the weight of history will only tolerate so much.",
                             Genre = 6,
-                            Title = "To Kill a Mockingbird"
+                            Title = "To Kill a Mockingbird",
+                            Year = 1960
                         },
                         new
                         {
                             Id = new Guid("3b57c8d7-a88e-4318-b5c4-0d1ab176c2e1"),
                             Author = "Jane Austen",
+                            Description = "Pride and Prejudice is an 1813 novel of manners written by Jane Austen. The novel follows the character development of Elizabeth Bennet, the dynamic protagonist of the book who learns about the repercussions of hasty judgments and comes to appreciate the difference between superficial goodness and actual goodness.\r\n\r\nMr. Bennet, owner of the Longbourn estate in Hertfordshire, has five daughters, but his property is entailed and can only be passed to a male heir. His wife also lacks an inheritance, so his family faces becoming very poor upon his death. Thus, it is imperative that at least one of the girls marry well to support the others, which is a motivation that drives the plot.",
                             Genre = 3,
-                            Title = "Pride and Prejudice"
+                            Title = "Pride and Prejudice",
+                            Year = 1813
                         },
                         new
                         {
                             Id = new Guid("023fe09a-5ed3-4b7c-8eeb-f323f9e43cbf"),
                             Author = "F. Scott Fitzgerald",
                             Genre = 3,
-                            Title = "The Great Gatsby"
+                            Title = "The Great Gatsby",
+                            Year = 1925
                         },
                         new
                         {
                             Id = new Guid("b6680038-dd42-4e75-9b24-ab7f2455393d"),
                             Author = "Fyodor Dostoevsky",
+                            Description = "Crime and Punishment is a novel by Fyodor Dostoyevsky, first published in 1866. Translation to english by Constance Garnett.\r\n\r\nIn the peak heat of a St. Petersburg summer, an erstwhile university student, Rodion Romanovich Raskolnikov, commits a crime, bludgeoning a pawnbroker and her sister with an axe. What follows is a psychological chess match between Raskolnikov and a wily detective that moves toward a form of redemption for our antihero. Relentlessly philosophical and psychological, tackles freedom and strength, suffering and madness, illness, while asking if “great men” have license to forge their own moral codes.\r\n\r\nRaskolnikov, a destitute and desperate former student, commits a random murder without remorse or regret, imagining himself to be a great man far above moral law. But as he embarks on a dangerous cat-and-mouse game with a suspicious police investigator, his own conscience begins to torment him and he seeks sympathy and redemption from Sonya, a downtrodden prostitute.",
                             Genre = 8,
-                            Title = "Crime and Punishment"
+                            Title = "Crime and Punishment",
+                            Year = 1866
                         },
                         new
                         {
                             Id = new Guid("7a183b2a-9af9-4412-9a2d-bcac7383e7ac"),
                             Author = "J.D. Salinger",
                             Genre = 6,
-                            Title = "The Catcher in the Rye"
+                            Title = "The Catcher in the Rye",
+                            Year = 1945
                         },
                         new
                         {
                             Id = new Guid("d292d10e-8797-4b79-be46-150c747a58bf"),
                             Author = "Bram Stoker",
                             Genre = 4,
-                            Title = "Dracula"
+                            Title = "Dracula",
+                            Year = 1897
                         },
                         new
                         {
                             Id = new Guid("905974f8-f5b3-4eaf-a143-11b8345aca92"),
                             Author = "Ray Bradbury",
                             Genre = 1,
-                            Title = "Fahrenheit 451"
+                            Title = "Fahrenheit 451",
+                            Year = 1953
                         },
                         new
                         {
                             Id = new Guid("7f7663d2-b426-4b01-af52-8d617a2fe553"),
                             Author = "Martin Fowler",
                             Genre = 7,
-                            Title = "Refactoring"
+                            Title = "Refactoring",
+                            Year = 1999
                         });
                 });
 

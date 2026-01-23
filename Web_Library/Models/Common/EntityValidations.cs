@@ -15,6 +15,8 @@
         {
             public const int TitleMaxLength = 100;
             public const int AuthorMaxLengthName = 100;
+            public const int URLMaxLength = 2048;
+            public const int DescriptionMaxLenght = 2000;
 
         }
     }
