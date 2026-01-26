@@ -20,3 +20,10 @@ html {
 body {
   margin-bottom: 60px;
 }
+.book-cover-small {
+    width: 80px !important;
+    height: auto;
+    object-fit: cover;
+    border-radius: 6px;
+}
+

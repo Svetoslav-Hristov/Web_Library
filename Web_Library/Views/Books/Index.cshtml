@@ -2,6 +2,17 @@
 @{
     ViewData["Title"] = "Books";
 }
+<form asp-action="Index" method="get" class="d-flex gap-2 mb-3">
+    <input type="text"
+           name="search"
+           value="@Context.Request.Query["search"]"
+           class="form-control"
+           placeholder="Search by title or author" />
+
+    <button type="submit" class="btn btn-primary">
+        Search
+    </button>
+</form>
 
 <div class="d-flex align-items-center justify-content-between mb-3">
     <h1 class="mb-0">Books</h1>
@@ -9,6 +20,7 @@
     <a class="btn btn-primary" asp-controller="Books" asp-action="Create">
         + Add Book
     </a>
+
 </div>
 
 @if (!Model.Any())
@@ -20,9 +32,10 @@ else
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Book</th>
-                <th style="width: 180px;">AuthorName</th>
-                <th style="width: 180px;">Year</th>
+                <th style="width: 250px;">Book Cover</th>
+                <th style="width: 180px;">Title</th>
+                <th style="width: 180px;">Author Name</th>
+                <th style="width: 180px;">Year of published </th>
 
             </tr>
         </thead>
@@ -30,9 +43,14 @@ else
             @foreach (Book b in Model)
             {
                 <tr>
+                    <td>
+                        <img src="~/Images/@b.CoverImageUrl"
+                             alt="Book cover"
+                             class="img-thumbnail book-cover-small" />
+                    </td>
                     <td>@b.Title</td>
                     <td>@b.Author</td>
-                    <td> - </td>
+                    <td>@b.Year</td>
                     <td>
                         <a class="btn btn-sm btn-outline-primary"
                            asp-controller="Books"

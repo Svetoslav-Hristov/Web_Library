@@ -14,9 +14,13 @@
         public static class Book
         {
             public const int TitleMaxLength = 100;
+            public const int TitleMinLength = 1;
             public const int AuthorMaxLengthName = 100;
+            public const int AuthorMinLengthName = 2;
             public const int URLMaxLength = 2048;
             public const int DescriptionMaxLenght = 2000;
+            
+
 
         }
     }
