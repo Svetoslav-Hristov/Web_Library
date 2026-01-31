@@ -7,7 +7,7 @@ using Web_Library.Models.Enums;
 
 namespace Web_Library.Models
 {
-    using static Models.Common.EntityValidations.Book;
+    using static Web_Library.Common.EntityValidations.Book;
     public class Book : IBook
     {
         [Key]

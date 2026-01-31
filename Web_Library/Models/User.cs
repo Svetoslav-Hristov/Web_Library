@@ -4,7 +4,7 @@ using Web_Library.Models.Contracts;
 
 namespace Web_Library.Models
 {
-    using static Models.Common.EntityValidations.User;
+    using static Web_Library.Common.EntityValidations.User;
     public class User : IUser
     {
 
@@ -14,6 +14,7 @@ namespace Web_Library.Models
 
         [Required]
         [MaxLength(FirstNameUserMaxLength)]
+        
         public string FirstName { get; set; } = null!;
 
         [Required]
@@ -27,12 +28,10 @@ namespace Web_Library.Models
         public string Address { get; set; } = null!;
 
         [Required]
-        [Phone]
         [MaxLength(PhoneNumberMaxLength)]
         public string PhoneNumber { get; set; } = null!;
 
         [Required]
-        [EmailAddress]
         [MaxLength(EmailAddressMaxLength)]
         public string Email { get; set; } = null!;
 

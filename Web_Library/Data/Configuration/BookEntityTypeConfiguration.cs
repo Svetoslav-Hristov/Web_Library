@@ -34,7 +34,8 @@ namespace Web_Library.Data.Configuration
             " consequences of totalitarianism, mass surveillance, and repressive regimentation of persons and behaviours within society." +
             " Orwell, himself a democratic socialist, modelled the authoritarian government in the novel after Stalinist Russia. More broadly," +
             " the novel examines the role of truth and facts within politics and the ways in which they are manipulated.",
-             Genre = Genre.ScienceFiction
+             Genre = Genre.ScienceFiction,
+             CoverImageUrl = "/images/1984.jpg"
         },
         new Book
         {

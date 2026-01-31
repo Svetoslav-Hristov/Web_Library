@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
-namespace Web_Library.ViewModels
+namespace Web_Library.ViewModels.Book
 {
     using Models.Enums;
-    using static Models.Common.EntityValidations.Book;
+    using static Web_Library.Common.EntityValidations.Book;
 
     public class BookFormModel
     {
@@ -24,8 +24,8 @@ namespace Web_Library.ViewModels
 
         public string? SelectedAuthor { get; set; }
 
-        [MaxLength(AuthorMaxLengthName)]
-        [MinLength(AuthorMinLengthName)]
+        
+        [StringLength(AuthorMaxLengthName,MinimumLength =AuthorMinLengthName)]
         public string? NewAuthor { get; set; }
 
         [Required]

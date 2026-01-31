@@ -26,4 +26,12 @@ body {
     object-fit: cover;
     border-radius: 6px;
 }
+.green-value {
+    color: #00FF00;
+    font-weight: 500;
+}
+.red-value {
+    color: #ff0000; 
+     font-weight: 500;
+}
 

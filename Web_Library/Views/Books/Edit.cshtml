@@ -1,4 +1,5 @@
-﻿@model BookFormModel
+﻿@using Web_Library.ViewModels.Book
+@model BookFormModel
 
 <h1>Edit Book</h1>
 
@@ -22,10 +23,11 @@
             <option value="">-- Select cover --</option>
         </select>
     </div>
-    <img src="~/Images/@Model.CoverImage"
-         alt="Book cover"
-         class="img-thumbnail" />
-
+    <div>
+        <img src="~/Images/@Model.CoverImage"
+             alt="Book cover"
+             class="img-thumbnail" />
+    </div>
     <div class="mb-3">
         <label asp-for="Description"></label>
         <input asp-for="Description" class="form-control" />

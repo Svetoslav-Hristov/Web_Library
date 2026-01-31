@@ -8,7 +8,7 @@ using System;
 using Web_Library.Data;
 using Web_Library.Models;
 using Web_Library.Models.Enums;
-using Web_Library.ViewModels;
+using Web_Library.ViewModels.Book;
 using static System.Net.Mime.MediaTypeNames;
 namespace Web_Library.Controllers
 {
@@ -111,8 +111,8 @@ namespace Web_Library.Controllers
             {
 
                 return View(formModel);
-
-
+            
+            
             }
 
             string authorName = string.Empty;
@@ -150,8 +150,9 @@ namespace Web_Library.Controllers
 
             await _dbContext.SaveChangesAsync();
 
+            TempData["SuccessMessage"] = "Book created successufully.";
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Details), new {newBook.Id} );
         }
 
         [HttpGet]
@@ -180,7 +181,7 @@ namespace Web_Library.Controllers
                 return NotFound();
             }
 
-            BookFormModel foundBook = new BookFormModel()
+            BookFormModel model = new BookFormModel()
             {
                 Title = book.Title,
                 Year = book.Year,
@@ -198,7 +199,7 @@ namespace Web_Library.Controllers
                 })
             };
 
-            return View(foundBook);
+            return View(model);
         }
 
         [HttpPost]
