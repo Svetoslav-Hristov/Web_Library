@@ -15,6 +15,7 @@ namespace Web_Library.Data.Configuration
             Title = "The Hobbit",
             Author = "J.R.R. Tolkien",
             Year=1937,
+            CoverImageUrl="TheHobbit.jpg",
             Description="The Hobbit is a tale of high adventure, " +
             "undertaken by a company of dwarves in search of dragon-guarded gold." +
             " A reluctant partner in this perilous quest is Bilbo Baggins, a comfort-loving unambitious hobbit, " +
@@ -27,6 +28,7 @@ namespace Web_Library.Data.Configuration
              Title = "1984",
              Author = "George Orwell",
              Year=1949,
+             CoverImageUrl="1984.jpg",
              Description="Nineteen Eighty-Four: A Novel, often referred to as 1984," +
             " is a dystopian social science fiction novel by the English novelist " +
             "George Orwell (the pen name of Eric Arthur Blair). It was published on 8 June 1949 by Secker & Warburg as Orwell's " +
@@ -34,8 +36,8 @@ namespace Web_Library.Data.Configuration
             " consequences of totalitarianism, mass surveillance, and repressive regimentation of persons and behaviours within society." +
             " Orwell, himself a democratic socialist, modelled the authoritarian government in the novel after Stalinist Russia. More broadly," +
             " the novel examines the role of truth and facts within politics and the ways in which they are manipulated.",
-             Genre = Genre.ScienceFiction,
-             CoverImageUrl = "/images/1984.jpg"
+             Genre = Genre.ScienceFiction
+           
         },
         new Book
         {
@@ -43,6 +45,7 @@ namespace Web_Library.Data.Configuration
              Title = "Brave New World",
              Author = "Aldous Huxley",
              Year=1932,
+             CoverImageUrl = "BraveNewWorld.jpg",
              Description="Originally published in 1932, this outstanding work of literature is more crucial and relevant today than ever before." +
             " Cloning, feel-good drugs, antiaging programs, and total social control through politics, programming," +
             " and media -- has Aldous Huxley accurately predicted our future? With a storyteller's genius, he weaves these ethical controversies in" +
@@ -57,6 +60,7 @@ namespace Web_Library.Data.Configuration
              Title = "Clean Code",
              Author = "Robert C. Martin",
              Year=2008,
+             CoverImageUrl="CleanCode.jpg",
              Genre = Genre.Programming
         },
         new Book
@@ -65,6 +69,7 @@ namespace Web_Library.Data.Configuration
              Title = "The Pragmatic Programmer",
              Author = "Andrew Hunt",
              Year = 1999,
+             CoverImageUrl="PragmaticProgramer.jpg",
              Description="Ward Cunningham Straight from the programming trenches, The Pragmatic Programmer cuts through the" +
             " increasing specialization and technicalities of modern software development to examine the core process--taking " +
             "a requirement and producing working, maintainable code that delights its users. It covers topics ranging from personal " +
@@ -84,6 +89,7 @@ namespace Web_Library.Data.Configuration
              Title = "The Da Vinci Code",
              Author = "Dan Brown",
              Year=2003,
+             CoverImageUrl="DaVinciCode.jpg",
              Description="The Da Vinci Code is a 2003 mystery thriller novel by Dan Brown. It is Brown's second novel" +
             " to include the character Robert Langdon: the first was his 2000 novel Angels & Demons." +
             " The Da Vinci Code follows \"symbologist\" Robert Langdon and cryptologist Sophie Neveu after a murder in " +
@@ -97,6 +103,7 @@ namespace Web_Library.Data.Configuration
              Title = "Sherlock Holmes",
              Author = "Arthur Conan Doyle",
              Year=1892,
+             CoverImageUrl="SherlockHolmes.jpg",
              Genre = Genre.Mystery
         },
         new Book
@@ -105,6 +112,7 @@ namespace Web_Library.Data.Configuration
              Title = "It",
              Author = "Stephen King",
              Year=1986,
+             CoverImageUrl="It.jpg",
              Description="Derry: A small city in Maine, place as hauntingly familiar as your own hometown," +
             " only in Derry the haunting is real...\r\n\r\n" +
             "They were seven teenagers when they first" +
@@ -119,6 +127,7 @@ namespace Web_Library.Data.Configuration
              Title = "The Shining",
              Author = "Stephen King",
              Year=1977,
+             CoverImageUrl="theShining.jpg",
              Description="The Shining is a 1977 horror novel by American author Stephen King. It is King's third published" +
             " novel and first hardback bestseller; its success firmly established King as a preeminent author in the horror genre." +
             " The setting and characters are influenced by King's personal experiences, including both his visit to The Stanley Hotel " +
@@ -135,6 +144,7 @@ namespace Web_Library.Data.Configuration
              Title = "The Alchemist",
              Author = "Paulo Coelho",
              Year=1988,
+             CoverImageUrl="TheAlchemist.jpg",
              Description="The Alchemist details the journey of a young Andalusian shepherd boy named Santiago." +
             " Santiago, believing a recurring dream to be prophetic, decides to travel to the pyramids of Egypt to " +
             "find treasure. On the way, he encounters love, danger, opportunity and disaster. One of the significant characters " +
@@ -148,6 +158,7 @@ namespace Web_Library.Data.Configuration
              Title = "Sapiens",
              Author = "Yuval Noah Harari",
              Year=2011,
+             CoverImageUrl="Sapiens.jpg",
              Genre = Genre.History
         },
         new Book
@@ -164,6 +175,7 @@ namespace Web_Library.Data.Configuration
              Title = "Steve Jobs",
              Author = "Walter Isaacson",
              Year=2011,
+             CoverImageUrl="SteveJobs.jpg",
              Genre = Genre.Biography
         },
         new Book
@@ -172,6 +184,7 @@ namespace Web_Library.Data.Configuration
              Title = "The Martian",
              Author = "Andy Weir",
              Year=2011,
+             CoverImageUrl="Martian.jpg",
              Genre = Genre.ScienceFiction
         },
         new Book
@@ -180,6 +193,7 @@ namespace Web_Library.Data.Configuration
              Title = "Dune",
              Author = "Frank Herbert",
              Year=1965,
+             CoverImageUrl="Dune.jpg",
              Description="Set on the desert planet Arrakis, Dune is the story of the boy Paul Atreides," +
             " heir to a noble family tasked with ruling an inhospitable world where the only" +
             " thing of value is the \"spice\" melange, a drug capable of extending life and enhancing consciousness. " +
@@ -199,6 +213,7 @@ namespace Web_Library.Data.Configuration
              Title = "The Name of the Wind",
              Author = "Patrick Rothfuss",
              Year=2007,
+             CoverImageUrl="TheNameOfWind.jpg",
              Description="The Name of the Wind, also called The Kingkiller Chronicle: Day One, is a heroic fantasy novel " +
             "written by American author Patrick Rothfuss. It is the first book in the ongoing fantasy trilogy The Kingkiller Chronicle." +
             " It was published on March 27, 2007, by DAW Books, the novel has been hailed as a masterpiece of high fantasy.\r\n\r\n" +
@@ -217,6 +232,7 @@ namespace Web_Library.Data.Configuration
              Title = "To Kill a Mockingbird",
              Author = "Harper Lee",
              Year=1960,
+             CoverImageUrl="ToKillMockingBird.jpg",
              Description="One of the best-loved stories of all time, To Kill a Mockingbird has been translated " +
             "into more than 40 languages, sold more than 30 million copies worldwide, served as the basis for an" +
             " enormously popular motion picture, and voted one of the best novels of the 20th century by librarians across" +
@@ -238,6 +254,7 @@ namespace Web_Library.Data.Configuration
              Title = "Pride and Prejudice",
              Author = "Jane Austen",
              Year=1813,
+             CoverImageUrl="Pride.jpg",
              Description="Pride and Prejudice is an 1813 novel of manners written by Jane Austen. " +
             "The novel follows the character development of Elizabeth Bennet, the dynamic protagonist " +
             "of the book who learns about the repercussions of hasty judgments and comes to appreciate the" +
@@ -254,6 +271,7 @@ namespace Web_Library.Data.Configuration
              Title = "The Great Gatsby",
              Author = "F. Scott Fitzgerald",
              Year=1925,
+             CoverImageUrl="TheGreatGatsby.jpg",
              Genre = Genre.Romance
         },
         new Book
@@ -262,6 +280,7 @@ namespace Web_Library.Data.Configuration
              Title = "Crime and Punishment",
              Author = "Fyodor Dostoevsky",
              Year=1866,
+             CoverImageUrl="CrimeAndPunishment.jpg",
              Description="Crime and Punishment is a novel by Fyodor Dostoyevsky, first published in 1866." +
             " Translation to english by Constance Garnett.\r\n\r\n" +
             "In the peak heat of a St. Petersburg summer, an erstwhile university student, Rodion Romanovich Raskolnikov," +
@@ -281,6 +300,7 @@ namespace Web_Library.Data.Configuration
              Title = "The Catcher in the Rye",
              Author = "J.D. Salinger",
              Year=1945,
+             CoverImageUrl="TheCatcherInTheRye.jpg",
              Genre = Genre.History
          },
         new Book
@@ -289,6 +309,7 @@ namespace Web_Library.Data.Configuration
              Title = "Dracula",
              Author = "Bram Stoker",
              Year=1897,
+             CoverImageUrl="Dracula.jpg",
              Genre = Genre.Horror
         },
         new Book
@@ -297,6 +318,7 @@ namespace Web_Library.Data.Configuration
              Title = "Fahrenheit 451",
              Author = "Ray Bradbury",
              Year=1953,
+             CoverImageUrl="Fahrenheit451.jpg",
              Genre = Genre.ScienceFiction
         },
         new Book
@@ -305,6 +327,7 @@ namespace Web_Library.Data.Configuration
              Title = "Refactoring",
              Author = "Martin Fowler",
              Year= 1999,
+             CoverImageUrl="Refactoring.jpg",
              Genre = Genre.Programming
         }
 

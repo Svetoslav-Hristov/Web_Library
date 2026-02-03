@@ -3,7 +3,10 @@
     ViewData["Title"] = "Books";
 }
 
+<div class="container">
+    <h2 class="mb-4">Edit User</h2>
 
+    <form>
 
 <form asp-action="Index" method="get" class="d-flex gap-2 mb-3">
     <input type="text"
@@ -18,7 +21,7 @@
 </form>
 
 <div class="d-flex align-items-center justify-content-between mb-3">
-    <h1 class="mb-0">Books</h1>
+    <h1 class="mb-0">Books Catalog</h1>
 
     <a class="btn btn-primary" asp-controller="Books" asp-action="Create">
         + Add Book
@@ -67,3 +70,5 @@ else
         </tbody>
     </table>
 }
+   </form>
+</div>

@@ -1,4 +1,6 @@
-﻿namespace Web_Library.Common
+﻿using Web_Library.Models;
+
+namespace Web_Library.Common
 {
     public static class EntityValidations
     {
@@ -24,9 +26,17 @@
             public const int AuthorMinLengthName = 2;
             public const int URLMaxLength = 2048;
             public const int DescriptionMaxLenght = 2000;
-            
+
 
 
         }
+        public static class UserBook
+        {
+            public const int ReservedExpiryPeriod = 3;
+            public const int BorrowingExpiryPeriod = 25;
+
+
+        }
+
     }
 }
