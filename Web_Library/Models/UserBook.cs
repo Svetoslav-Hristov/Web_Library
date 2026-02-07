@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Web_Library.Models.Contracts;
 using Web_Library.Models.Enums;
 
@@ -6,6 +7,10 @@ namespace Web_Library.Models
 {
     public class UserBook:IUserBook
     {
+
+        [Key]
+        public Guid Id { get; set; }
+
         public DateOnly? ReservedOn { get; set; }
 
         public DateOnly? ReservationExpiresOn { get; set; }

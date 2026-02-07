@@ -17,6 +17,9 @@ namespace Web_Library.Common
             public const int EmailAddressMaxLength = 150;
             public const int EmailAddressMinLength = 8;
 
+            public const int UserSearchCriteriaMax = 150;
+            public const int UserSearchCriteriaMin = 8;
+
         }
         public static class Book
         {
@@ -25,7 +28,7 @@ namespace Web_Library.Common
             public const int AuthorMaxLengthName = 100;
             public const int AuthorMinLengthName = 2;
             public const int URLMaxLength = 2048;
-            public const int DescriptionMaxLenght = 2000;
+            public const int DescriptionMaxLength = 2000;
 
 
 

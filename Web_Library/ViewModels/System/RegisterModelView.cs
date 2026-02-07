@@ -5,6 +5,8 @@ namespace Web_Library.ViewModels.System
 {
     public class RegisterModelView
     {
+        public Guid LoanId { get; set; }
+
         public Guid UserId { get; set; }
 
 
@@ -22,6 +24,11 @@ namespace Web_Library.ViewModels.System
 
 
         public DateOnly? ReturnDate { get; set; }
+
+
+        public DateOnly? ReservedOn { get; set; }
+
+        public DateOnly? ReservationExpiresOn { get; set; }
 
         public BookStatus Status { get; set; }
 

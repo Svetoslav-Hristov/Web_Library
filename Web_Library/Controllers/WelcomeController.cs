@@ -19,27 +19,34 @@ namespace Web_Library.Controllers
             this._dbContext = dbContext;
         }
 
-        public async Task<IActionResult> Index()
+        public  IActionResult Index()
         {
 
-            IEnumerable<PreviewBookModel> bookCollection = await _dbContext.Books.AsNoTracking().
-                Where(b => b.CoverImageUrl != null).Select(b => new PreviewBookModel()
-                {
-
-                    Id = b.Id,
-                    CoverImageUrl = b.CoverImageUrl,
-                    Title = b.Title
-
-                }).ToArrayAsync();
-
-            IEnumerable<PreviewBookModel> lastBooks = bookCollection.TakeLast(5).OrderBy(b => b.Title).ToArray();
-           
-            return View(lastBooks);
+            return View();
         }
 
         public IActionResult Contacts()
         {
             return View();
+        }
+
+
+        public async Task<IActionResult> EnterPreview()
+        {
+
+            IEnumerable<PreviewBookModel> bookCollection = await _dbContext.Books.AsNoTracking().
+               Where(b => b.CoverImageUrl != null).OrderByDescending(b=>b.Id).Select(b => new PreviewBookModel()
+               {
+
+                   Id = b.Id,
+                   CoverImageUrl = b.CoverImageUrl,
+                   Title = b.Title
+
+               }).Take(5).OrderBy(pm=>pm.Title).ToArrayAsync();
+
+
+            return View(bookCollection);
+            
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

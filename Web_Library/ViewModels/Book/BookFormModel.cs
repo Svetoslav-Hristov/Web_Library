@@ -19,7 +19,7 @@ namespace Web_Library.ViewModels.Book
         [MaxLength(URLMaxLength)]
         public string? CoverImage { get; set; }
 
-        [MaxLength(DescriptionMaxLenght)]
+        [MaxLength(DescriptionMaxLength)]
         public string? Description { get; set; }
 
         public string? SelectedAuthor { get; set; }

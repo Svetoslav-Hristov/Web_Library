@@ -3,8 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Web_Library.ViewModels.System
 {
-    public class CreateLoanView
+    public class CreateLoanView 
     {
+
         public Guid UserId { get; set; }
 
         public Guid BookId { get; set; }

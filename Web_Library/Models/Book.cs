@@ -22,7 +22,7 @@ namespace Web_Library.Models
         [MaxLength(URLMaxLength)]
         public string? CoverImageUrl { get; set; }
 
-        [MaxLength(DescriptionMaxLenght)]
+        [MaxLength(DescriptionMaxLength)]
         public string? Description { get; set; }
         
         [Required]

@@ -10,8 +10,8 @@ namespace Web_Library.ViewModels.Book
         [Required]
         public string Title { get; set; } = null!;
 
-        [Required]
-        public string CoverImageUrl { get; set; } = null!;
+        
+        public string? CoverImageUrl { get; set; } = null!;
 
         
     }

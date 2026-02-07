@@ -26,22 +26,39 @@ namespace Web_Library.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Index(string? search)
+        public async Task<IActionResult> Index(string? search, Genre? genre)
         {
+            IQueryable<FullPreviewModelBook> allBooks = _dbContext.Books.AsNoTracking().Select(b => new FullPreviewModelBook()
+            {
+                Id = b.Id,
+                Title = b.Title,
+                AuthorName = b.Author,
+                YearOfPublished = b.Year,
+                Genre = b.Genre,
+                CoverImageUrl = b.CoverImageUrl
+
+            }).OrderBy(b => b.Title).ThenBy(b => b.AuthorName);
 
 
             if (!string.IsNullOrWhiteSpace(search))
             {
                 search = search.ToLower().Trim();
 
-                IEnumerable<Book> searchingBook = await _dbContext.Books.AsNoTracking().
-                Where(b => b.Title.ToLower().Contains(search) || b.Author.ToLower().Contains(search)).ToArrayAsync();
+                allBooks = allBooks.Where(b => b.Title.ToLower().Contains(search)
+                 || b.AuthorName.ToLower().Contains(search));
 
-                return View(searchingBook);
+
             }
 
-            IEnumerable<Book> books = await _dbContext.Books.AsNoTracking()
-            .OrderBy(b => b.Title).ThenBy(b => b.Author).ToArrayAsync();
+            if (genre != null)
+            {
+                allBooks = allBooks.Where(b => b.Genre == genre);
+
+            }
+
+
+
+            IEnumerable<FullPreviewModelBook> books = await allBooks.ToArrayAsync();
 
             return View(books);
         }
@@ -49,14 +66,43 @@ namespace Web_Library.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(Guid Id)
         {
-            Book? book = await _dbContext.Books.AsNoTracking().FirstOrDefaultAsync(b => b.Id == Id);
+
+
+            Book? book = await _dbContext.Books.FirstOrDefaultAsync(b => b.Id == Id);
+
 
             if (book == null)
             {
                 return NotFound("Not found !");
             }
 
-            return View(book);
+
+            var bookStatus = await _dbContext.UsersBooks.FirstOrDefaultAsync(ub => ub.BookId == Id);
+
+            BookStatus currentStatus;
+
+            if (bookStatus != null)
+            {
+                currentStatus = bookStatus.Status;
+            }
+            else
+            {
+                currentStatus = BookStatus.Returned;
+            }
+
+            FullPreviewModelBook newBook = new FullPreviewModelBook()
+            {
+                Id = Id,
+                Title = book.Title,
+                YearOfPublished = book.Year,
+                AuthorName = book.Author,
+                Description = book.Description,
+                Genre = book.Genre,
+                BookStatus = currentStatus,
+                CoverImageUrl = book.CoverImageUrl
+            };
+
+            return View(newBook);
 
         }
 
@@ -109,10 +155,11 @@ namespace Web_Library.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ModelState.AddModelError(string.Empty, "Unexpected error ");
 
                 return View(formModel);
-            
-            
+
+
             }
 
             string authorName = string.Empty;
@@ -128,11 +175,14 @@ namespace Web_Library.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "Please select or add an author.");
+                ModelState.AddModelError(nameof(formModel.NewAuthor), "Please select or add an author.");
+
+                ModelState.AddModelError(nameof(formModel.SelectedAuthor), "Please select or add an author.");
 
                 return View(formModel);
 
             }
+
 
             Book newBook = new Book
             {
@@ -146,13 +196,25 @@ namespace Web_Library.Controllers
 
             };
 
-            await _dbContext.Books.AddAsync(newBook);
+            try
+            {
 
-            await _dbContext.SaveChangesAsync();
+                await _dbContext.Books.AddAsync(newBook);
 
-            TempData["SuccessMessage"] = "Book created successufully.";
+                await _dbContext.SaveChangesAsync();
 
-            return RedirectToAction(nameof(Details), new {newBook.Id} );
+                TempData["SuccessMessage"] = "Book created successfully.";
+
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e);
+                ModelState.AddModelError(string.Empty, "Unexpected error is occurred while register new reservation! Please try again later.");
+
+                return View("Create", formModel);
+            }
+            return RedirectToAction(nameof(Details), new { newBook.Id });
         }
 
         [HttpGet]

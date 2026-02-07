@@ -20,8 +20,7 @@ namespace Web_Library.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserBook>().HasKey(ub => new { ub.UserId, ub.BookId });
-
+           
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(LibraryDbContext).Assembly);
 
         }

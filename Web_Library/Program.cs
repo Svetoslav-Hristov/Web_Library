@@ -39,7 +39,7 @@ namespace Web_Library
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Welcome}/{action=Index}/{id?}");
+                pattern: "{controller=Welcome}/{action=index}/{id?}");
 
             app.Run();
         }

@@ -129,7 +129,7 @@ namespace Web_Library.Controllers
 
             if (invalidEmail)
             {
-                ModelState.AddModelError("Email", "Email alredy exist in database ! ");
+                ModelState.AddModelError("Email", "Email all ready exist in database ! ");
 
                 return View(model);
             }
@@ -171,7 +171,7 @@ namespace Web_Library.Controllers
 
             TempData["SuccessRegistration"] = "The user was successfully registered.";
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index","Books");
 
         }
 

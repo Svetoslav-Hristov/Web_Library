@@ -3,7 +3,7 @@
 
 <div class="container">
     <h2 class="mb-4">Loan Form</h2>
-    <form>
+    
         <form asp-action="CreateLoan" method="post">
 
             <div class="mb-3">
@@ -29,14 +29,14 @@
             <div class="mb-3">
                 <label class="form-label">Pick-up date</label>
                 <input class="form-control"
-                       value="@DateOnly.FromDateTime(DateTime.Now)"
+                       value="@DateOnly.FromDateTime(DateTime.Now).ToString("dd/MM/yyyy")"
                        readonly />
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Return date</label>
                 <input class="form-control"
-                       value="@DateOnly.FromDateTime(DateTime.Now).AddDays(25)"
+                       value="@DateOnly.FromDateTime(DateTime.Now).AddDays(25).ToString("dd/MM/yyyy")"
                        readonly />
             </div>
 
@@ -47,5 +47,5 @@
 
         </form>
 
-    </form>
+   
 </div>
