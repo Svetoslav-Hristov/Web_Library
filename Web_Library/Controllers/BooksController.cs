@@ -10,6 +10,7 @@ using Web_Library.Models;
 using Web_Library.Models.Enums;
 using Web_Library.ViewModels.Book;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 namespace Web_Library.Controllers
 {
     public class BooksController : Controller
@@ -77,7 +78,7 @@ namespace Web_Library.Controllers
             }
 
 
-            var bookStatus = await _dbContext.UsersBooks.FirstOrDefaultAsync(ub => ub.BookId == Id);
+            var bookStatus = await _dbContext.UsersBooks.AsNoTracking().FirstOrDefaultAsync(ub => ub.BookId == Id);
 
             BookStatus currentStatus;
 
@@ -111,41 +112,11 @@ namespace Web_Library.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var authors = await _dbContext.Books.AsNoTracking()
-           .Select(b => b.Author).Distinct().ToListAsync();
 
-            var genres = Enum.GetValues<Genre>();
+            BookFormModel model = new BookFormModel();
 
+            await BookModelDataFillingAsync(model);
 
-
-            string coverPath = Path.Combine(_environment.WebRootPath, "images");
-
-
-            var covers = Directory.GetFiles(coverPath).Select(f => Path.GetFileName(f))
-                .Select(f => new SelectListItem
-                {
-                    Text = f,
-                    Value = f
-                });
-
-
-
-            var model = new BookFormModel()
-            {
-
-                Authors = authors.Select(a => new SelectListItem()
-                {
-                    Text = a,
-                    Value = a
-                }),
-                Genres = genres.Select(g => new SelectListItem()
-                {
-                    Text = g.ToString(),
-                    Value = g.ToString()
-
-                }),
-                Covers = covers
-            };
 
             return View(model);
         }
@@ -157,7 +128,7 @@ namespace Web_Library.Controllers
             {
                 ModelState.AddModelError(string.Empty, "Unexpected error ");
 
-                return View(formModel);
+                return View(nameof(Create), formModel);
 
 
             }
@@ -175,11 +146,13 @@ namespace Web_Library.Controllers
             }
             else
             {
-                ModelState.AddModelError(nameof(formModel.NewAuthor), "Please select or add an author.");
+                ModelState.AddModelError(nameof(formModel.NewAuthor), "Or add an author.");
 
-                ModelState.AddModelError(nameof(formModel.SelectedAuthor), "Please select or add an author.");
+                ModelState.AddModelError(nameof(formModel.SelectedAuthor), "Please select and add an author.");
 
-                return View(formModel);
+                await BookModelDataFillingAsync(formModel);
+
+                return View(nameof(Create), formModel);
 
             }
 
@@ -210,7 +183,7 @@ namespace Web_Library.Controllers
             {
 
                 Console.WriteLine(e);
-                ModelState.AddModelError(string.Empty, "Unexpected error is occurred while register new reservation! Please try again later.");
+                ModelState.AddModelError(string.Empty, "Unexpected error is occurred while added new book ! Please try again later.");
 
                 return View("Create", formModel);
             }
@@ -221,21 +194,7 @@ namespace Web_Library.Controllers
         public async Task<IActionResult> Edit(Guid Id)
         {
 
-            var authors = await _dbContext.Books.AsNoTracking()
-           .Select(b => b.Author).Distinct().ToListAsync();
-
-            var genres = Enum.GetValues<Genre>();
-            string coverPath = Path.Combine(_environment.WebRootPath, "images");
-
-
-            var covers = Directory.GetFiles(coverPath).Select(f => Path.GetFileName(f))
-                .Select(f => new SelectListItem
-                {
-                    Text = f,
-                    Value = f
-                });
-
-
+            
             Book? book = await _dbContext.Books.AsNoTracking().SingleOrDefaultAsync(b => b.Id == Id);
 
             if (book == null)
@@ -247,19 +206,16 @@ namespace Web_Library.Controllers
             {
                 Title = book.Title,
                 Year = book.Year,
-                Covers = covers,
+                CoverImage = book.CoverImageUrl,
                 Description = book.Description,
-                Authors = authors.Select(a => new SelectListItem()
-                {
-                    Text = a,
-                    Value = a
-                }),
-                Genres = genres.Select(g => new SelectListItem()
-                {
-                    Text = g.ToString(),
-                    Value = g.ToString()
-                })
+                SelectedAuthor = book.Author,
+                Genre = book.Genre,
+
             };
+
+            await BookModelDataFillingAsync(model);
+
+
 
             return View(model);
         }
@@ -270,7 +226,32 @@ namespace Web_Library.Controllers
             if (!ModelState.IsValid)
             {
 
-                return View(model);
+                ModelState.AddModelError(string.Empty, "Unexpected error");
+
+                return View(nameof(Edit), model);
+
+            }
+
+            string authorName = string.Empty;
+
+            if (!string.IsNullOrWhiteSpace(model.SelectedAuthor))
+            {
+                authorName = model.SelectedAuthor;
+
+            }
+            else if (!string.IsNullOrWhiteSpace(model.NewAuthor))
+            {
+                authorName = model.NewAuthor;
+            }
+            else
+            {
+                ModelState.AddModelError(nameof(model.SelectedAuthor), "Please select or add an author.");
+
+                ModelState.AddModelError(nameof(model.NewAuthor), "Or add an author.");
+
+                await BookModelDataFillingAsync(model);
+
+                return View(nameof(Edit), model);
 
             }
 
@@ -281,18 +262,39 @@ namespace Web_Library.Controllers
                 return NotFound();
             }
 
-            book.Title = model.Title;
-            book.Year = model.Year;
-            book.CoverImageUrl = model.CoverImage ?? book.CoverImageUrl;
-            book.Description = model.Description;
-            book.Author = model.SelectedAuthor ?? book.Author;
-            book.Genre = model.Genre;
+            try
+            {
+
+                book.Title = model.Title;
+                book.Year = model.Year;
+                book.CoverImageUrl = model.CoverImage ?? book.CoverImageUrl;
+                book.Description = model.Description;
+                book.Author = authorName;
+                book.Genre = model.Genre;
+
+                await _dbContext.SaveChangesAsync();
+
+                TempData["SuccessEdit"] = "You have successfully edited your book.";
+
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e);
+                ModelState.AddModelError(string.Empty, "Unexpected error is occurred! Please try again later.");
+
+                return View("Edit", model);
+
+
+            }
 
 
 
-            await _dbContext.SaveChangesAsync();
+
 
             return RedirectToAction(nameof(Details), new { Id });
+
+
         }
 
         public async Task<IActionResult> Delete(Guid Id)
@@ -314,14 +316,57 @@ namespace Web_Library.Controllers
 
             }
 
-            _dbContext.Remove(foundBook);
+            try
+            {
 
-            await _dbContext.SaveChangesAsync();
+                _dbContext.Remove(foundBook);
 
+                await _dbContext.SaveChangesAsync();
+
+                TempData["SuccessDelete"] = "You have successfully deleted the book";
+
+            }
+            catch (Exception e)
+            {
+
+                Console.WriteLine(e);
+
+                TempData["Error"] = "Unexpected error occurred! Please try again later.";
+
+                return RedirectToAction(nameof(Details), new { Id = foundBook.Id });
+
+
+
+            }
             return RedirectToAction(nameof(Index));
         }
 
+        private async Task BookModelDataFillingAsync(BookFormModel model)
+        {
 
+
+            model.Authors = await _dbContext.Books.AsNoTracking().Select(b => b.Author).Distinct()
+            .Select(a => new SelectListItem { Text = a, Value = a })
+            .ToListAsync();
+
+            model.Genres = Enum.GetValues(typeof(Genre)).Cast<Genre>()
+            .Select(g => new SelectListItem
+            {
+                Text = g.ToString(),
+                Value = g.ToString()
+            }).ToList();
+
+            model.Covers = Directory.GetFiles(Path.Combine(_environment.WebRootPath, "images"))
+                .Select(f => Path.GetFileName(f)).Select(f => new SelectListItem
+                {
+                    Text = f,
+                    Value = f
+                }).ToList();
+
+
+
+
+        }
 
 
 

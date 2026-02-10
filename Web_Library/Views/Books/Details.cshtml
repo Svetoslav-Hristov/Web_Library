@@ -1,11 +1,32 @@
 ﻿@model FullPreviewModelBook
 @{
     ViewData["Title"] = "Book Details";
-    
+
     var message = TempData["SuccessMessage"] as string;
 
     var successReservation = TempData["SuccessReservation"] as string;
 
+    var successEdit = TempData["SuccessEdit"] as string;
+
+    var errorDelete = TempData["Error"] as string;
+
+}
+
+
+@if (!string.IsNullOrEmpty(errorDelete))
+{
+    <div class="alert alert-danger" role="alert">
+        @errorDelete
+    </div>
+}
+
+
+@if (!string.IsNullOrEmpty(successEdit))
+{
+    <div class="alert alert-success" role="alert">
+        @successEdit
+    </div>
+    
 }
 
 
@@ -40,6 +61,22 @@
                 <h5 class="text-muted">by @Model.AuthorName</h5>
                 <p>Year of published: @Model.YearOfPublished</p>
                 <p>Genre: @Model.Genre</p>
+                <p>
+                    Status:
+                    @if (Model.BookStatus == BookStatus.Returned || Model.BookStatus==BookStatus.Expired)
+                    {
+                        <span style="color:lawngreen">Released</span>
+                    }
+                    else if (Model.BookStatus == BookStatus.PickedUp)
+                    {
+                        <span style="color:red;">@Model.BookStatus</span>
+                    }
+                    else
+                    {
+                        <span style="color:gold;">@Model.BookStatus</span>
+                     
+                    }
+                </p>
                 <hr />
                 <p>@Model.Description</p>
             </div>

@@ -20,20 +20,27 @@ namespace Web_Library.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(string? search)
         {
+
+            IQueryable<User> allUsers = _dbContext.Users.AsNoTracking()
+            .OrderBy(u => u.FirstName).ThenBy(u => u.LastName).ThenBy(u=>u.Age);
+
+
+
             if (!string.IsNullOrWhiteSpace(search))
             {
                 search = search.ToLower().Trim();
 
                 bool isValidAge = int.TryParse(search, out int age);
 
-                IEnumerable<User> foundUsers = await _dbContext.Users.AsNoTracking()
-                .Where(u => u.FirstName.ToLower().Contains(search) || u.LastName.ToLower().Contains(search) || u.Age == age)
-                .ToListAsync();
+                IEnumerable<User> foundUsers = await allUsers.AsNoTracking().Where(u => u.FirstName.ToLower().Contains(search) ||
+                u.LastName.ToLower().Contains(search) ||(isValidAge && u.Age == age)).ToArrayAsync();
 
                 if (!foundUsers.Any())
                 {
 
-                    TempData["NotFound"] = "User not found!";
+                    TempData["NotFound"] = "User/s not found!";
+                    
+                    View(foundUsers);
                 }
 
                 return View(foundUsers);
@@ -41,12 +48,13 @@ namespace Web_Library.Controllers
             }
 
 
-            IEnumerable<User> users = await _dbContext.Users.AsNoTracking().OrderBy(u => u.FirstName)
-            .ThenBy(u => u.LastName).ThenBy(u => u.Age).ToArrayAsync();
+            IEnumerable<User> users = await allUsers.AsNoTracking().ToArrayAsync();
 
             if (!users.Any())
             {
                 TempData["EmptyCollection"] = "There no added users in data base!";
+
+                return RedirectToAction(nameof(Index));
             }
 
             return View(users);
@@ -86,13 +94,13 @@ namespace Web_Library.Controllers
 
                 await _dbContext.SaveChangesAsync();
 
-                TempData["SuccesStatus"] = "User status has been changed successfully.";
+                TempData["SuccessStatus"] = "User status has been changed successfully.";
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
 
-                TempData["ErrorStatus"] = "Unexpected error is occured while change status of this user! Please try again later.";
+                TempData["ErrorStatus"] = "Unexpected error is occurred while change status of this user! Please try again later.";
 
 
             }
@@ -162,7 +170,7 @@ namespace Web_Library.Controllers
 
 
                 Console.WriteLine(m);
-                ModelState.AddModelError(string.Empty, "Unexpected error is occured while register user! Please try again later.");
+                ModelState.AddModelError(string.Empty, "Unexpected error is occurred while register user! Please try again later.");
 
                 return View(model);
 
@@ -171,14 +179,15 @@ namespace Web_Library.Controllers
 
             TempData["SuccessRegistration"] = "The user was successfully registered.";
 
-            return RedirectToAction("Index","Books");
+            return RedirectToAction("Index", "Books");
 
         }
 
         [HttpGet]
         public async Task<IActionResult> Details(Guid Id)
         {
-            var foundUser = await _dbContext.Users.Include(u => u.UserBooks).ThenInclude(ub => ub.Book).AsNoTracking().FirstOrDefaultAsync(u => u.Id == Id);
+            var foundUser = await _dbContext.Users.Include(u => u.UserBooks).ThenInclude(ub => ub.Book)
+                .AsNoTracking().FirstOrDefaultAsync(u => u.Id == Id);
 
             if (foundUser == null)
             {
@@ -253,13 +262,13 @@ namespace Web_Library.Controllers
                 return BadRequest();
 
             }
-            
+
             if (!ModelState.IsValid)
             {
 
                 return View(formModel);
             }
-            
+
             User? foundUser = await _dbContext.Users.FindAsync(Id);
 
             if (foundUser == null)

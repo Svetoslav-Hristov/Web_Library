@@ -9,11 +9,11 @@ namespace Web_Library
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            string? conectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            string? connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
             builder.Services.AddDbContext<LibraryDbContext>(options =>
             {
-                options.UseSqlServer(conectionString);
+                options.UseSqlServer(connectionString);
 
             });
 

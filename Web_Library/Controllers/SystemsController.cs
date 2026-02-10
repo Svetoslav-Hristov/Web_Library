@@ -387,14 +387,18 @@ namespace Web_Library.Controllers
                 return NotFound();
             }
 
+           
+
             try
             {
+                DateOnly today = DateOnly.FromDateTime(DateTime.UtcNow);
 
                 removeLoan.Status = BookStatus.Returned;
+                removeLoan.ReturnDate = today;
 
-                var anotherBook = _dbContext.UsersBooks.Any(ub => ub.UserId == removeLoan.UserId &&
+                var anotherBook =await _dbContext.UsersBooks.AnyAsync(ub => ub.UserId == removeLoan.UserId &&
                 ub.Id != removeLoan.Id && ub.Status == BookStatus.PickedUp);
-
+                
                 var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == removeLoan.UserId);
 
                 if (user != null && user.IsBlocked)

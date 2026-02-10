@@ -9,9 +9,10 @@ namespace Web_Library.ViewModels.System
         public Guid BookId { get; set; }
 
         [Required]
-        public string BookTitle { get; set; } = null!; 
+        public string BookTitle { get; set; } = null!;
 
         
+        [StringLength(EmailAddressMaxLength,MinimumLength =PhoneNumberMinLength)]
         public string? SearchingCriteria { get; set; }
 
         [Required]

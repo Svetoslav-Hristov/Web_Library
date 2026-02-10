@@ -8,13 +8,13 @@
 
     var successChanges = TempData["SuccessMessage"] as string;
 
-    var statusMessage = TempData["SuccesStatus"] as string;
+    var statusMessage = TempData["SuccessStatus"] as string;
 
     var errorStatus = TempData["NotNeed"] as string;
 
     var unexpectedStatus = TempData["ErrorStatus"] as string;
 
-    var successRegistration = TempData["SuccessRegistration"] as string;
+    
 
 }
 
@@ -22,14 +22,6 @@
 {
     <div class="alert alert-danger" role="alert">
         @unexpectedStatus
-    </div>
-
-}
-
-@if (!string.IsNullOrEmpty(successRegistration))
-{
-    <div class="alert alert-success" role="alert">
-        @successRegistration
     </div>
 
 }
@@ -58,7 +50,7 @@
 
 @if (!string.IsNullOrEmpty(notFound))
 {
-    <div class="alert alert-success" role="alert">
+    <div class="alert alert-info" role="alert">
         @notFound
     </div>
 
