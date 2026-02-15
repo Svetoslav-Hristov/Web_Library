@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Web_Library.Data.Models\Web_Library.Data.Models.csproj" />
+    <ProjectReference Include="..\Web_Library.Data\Web_Library.Data.csproj" />
+    <ProjectReference Include="..\Web_Library.GCommon\Web_Library.GCommon.csproj" />
+    <ProjectReference Include="..\Web_Library.Web.ViewModels\Web_Library.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>

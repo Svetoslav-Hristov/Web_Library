@@ -2,19 +2,45 @@
 @{
     ViewData["Title"] = "Users";
 
-    var notFound = TempData["NotFound"] as string;
-
     var emptyCollection = TempData["EmptyCollection"] as string;
 
     var successChanges = TempData["SuccessMessage"] as string;
 
     var statusMessage = TempData["SuccessStatus"] as string;
 
-    var errorStatus = TempData["NotNeed"] as string;
-
     var unexpectedStatus = TempData["ErrorStatus"] as string;
 
-    
+    var errorStatus = TempData["NotNeed"] as string;
+
+    var missingUser = TempData["MissingUser"] as string;
+
+    var errorDelete = TempData["ErrorMessage"] as string;
+
+    var successDelete = TempData["SuccessDelete"] as string;
+
+}
+
+@if (!string.IsNullOrEmpty(successDelete))
+{
+    <div class="alert alert-success" role="alert">
+        @successDelete
+    </div>
+
+}
+
+@if (!string.IsNullOrEmpty(errorDelete))
+{
+    <div class="alert alert-danger" role="alert">
+        @errorDelete
+    </div>
+
+}
+
+@if (!string.IsNullOrEmpty(missingUser))
+{
+    <div class="alert alert-danger" role="alert">
+        @missingUser
+    </div>
 
 }
 
@@ -48,13 +74,6 @@
 }
 
 
-@if (!string.IsNullOrEmpty(notFound))
-{
-    <div class="alert alert-info" role="alert">
-        @notFound
-    </div>
-
-}
 
 @if (!string.IsNullOrEmpty(emptyCollection))
 {

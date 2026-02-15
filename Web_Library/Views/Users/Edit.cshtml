@@ -22,6 +22,8 @@
 
         <form asp-action="Edit" method="post">
 
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <div class="mb-3">
                 <label asp-for="FirstName"></label>
                 <input asp-for="FirstName" class=form-control />

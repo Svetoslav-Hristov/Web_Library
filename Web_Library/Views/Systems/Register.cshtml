@@ -2,13 +2,46 @@
 @{
     var message = TempData["NotAvailable"] as string;
 
-    var blockedUser = TempData["IncorrectUser"] as string;
+    var errorLoan = TempData["ErrorMessage"] as string;
+
+    var successLoan = TempData["SuccessMessage"] as string;
 
     var failEdit = TempData["Unchanged"] as string;
 
     var editLoan = TempData["ConfirmOrEdit"] as string;
 
+    var deleteError = TempData["DeleteError"] as string;
+
+    var successDelete = TempData["SuccessDelete"] as string;
+
 }
+
+@if (!string.IsNullOrEmpty(successDelete))
+{
+    <div class="alert alert-success" role="alert">
+        @successDelete
+    </div>
+
+}
+
+
+@if (!string.IsNullOrEmpty(deleteError))
+{
+    <div class="alert alert-danger" role="alert">
+        @deleteError
+    </div>
+
+}
+
+@if (!string.IsNullOrEmpty(successLoan))
+{
+    <div class="alert alert-success" role="alert">
+        @successLoan
+    </div>
+
+}
+
+
 
 @if (!string.IsNullOrEmpty(message))
 {
@@ -17,10 +50,10 @@
     </div>
 
 }
-@if (!string.IsNullOrEmpty(blockedUser))
+@if (!string.IsNullOrEmpty(errorLoan))
 {
     <div class="alert alert-danger" role="alert">
-        @blockedUser
+        @errorLoan
     </div>
 
 }

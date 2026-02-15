@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Web_Library.Data;
+using Web_Library.Services.Core.Interfaces;
+using Web_Library.Services.Core;
 
 namespace Web_Library
 {
@@ -16,6 +18,14 @@ namespace Web_Library
                 options.UseSqlServer(connectionString);
 
             });
+
+            builder.Services.AddScoped<IBooksService,BooksService>();
+
+            builder.Services.AddScoped<ISystemsService,SystemsService>();
+
+            builder.Services.AddScoped<IUsersService, UsersService>();
+
+            builder.Services.AddScoped<IWelcomeService, WelcomeService>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

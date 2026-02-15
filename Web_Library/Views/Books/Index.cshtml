@@ -4,14 +4,27 @@
 
     var successDelete = TempData["SuccessDelete"] as string;
 
-    var successRegistration = TempData["SuccessRegistration"] as string;
+    var userSuccessRegistration = TempData["SuccessRegistration"] as string;
+
+    var errorCreate = TempData["ErrorBook"] as string;
 
 }
 
-@if (!string.IsNullOrEmpty(successRegistration))
+
+@if (!string.IsNullOrEmpty(errorCreate))
+{
+    <div class="alert alert-danger" role="alert">
+        @errorCreate
+    </div>
+
+}
+
+
+
+@if (!string.IsNullOrEmpty(userSuccessRegistration))
 {
     <div class="alert alert-success" role="alert">
-        @successRegistration
+        @userSuccessRegistration
     </div>
 
 }

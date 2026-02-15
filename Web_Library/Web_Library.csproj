@@ -14,4 +14,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Web_Library.GCommon\Web_Library.GCommon.csproj" />
+    <ProjectReference Include="..\Web_Library.Services.Core\Web_Library.Services.Core.csproj" />
+    <ProjectReference Include="..\Web_Library.Web.ViewModels\Web_Library.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>

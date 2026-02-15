@@ -6,12 +6,31 @@
 
     var successReservation = TempData["SuccessReservation"] as string;
 
+    var notSuccessReservation = TempData["ErrorMessage"] as string;
+
     var successEdit = TempData["SuccessEdit"] as string;
+
+    var errorEdit = TempData["ErrorEdit"] as string;
 
     var errorDelete = TempData["Error"] as string;
 
 }
 
+
+@if (!string.IsNullOrEmpty(errorEdit))
+{
+    <div class="alert alert-danger" role="alert">
+        @errorEdit
+    </div>
+}
+
+
+@if (!string.IsNullOrEmpty(notSuccessReservation))
+{
+<div class="alert alert-danger" role="alert">
+    @notSuccessReservation
+</div>
+}
 
 @if (!string.IsNullOrEmpty(errorDelete))
 {

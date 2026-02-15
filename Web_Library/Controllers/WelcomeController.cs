@@ -1,8 +1,8 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 using Web_Library.Data;
-using Web_Library.Models;
+using Web_Library.Services.Core.Interfaces;
 using Web_Library.ViewModels;
 using Web_Library.ViewModels.Book;
 
@@ -11,15 +11,18 @@ namespace Web_Library.Controllers
     public class WelcomeController : Controller
     {
         private readonly ILogger<WelcomeController> _logger;
+        private readonly IWelcomeService _welcomeService;
 
-        private readonly LibraryDbContext _dbContext;
-        public WelcomeController(ILogger<WelcomeController> logger,LibraryDbContext dbContext)
+
+        public WelcomeController(ILogger<WelcomeController> logger, IWelcomeService welcomeService)
+
         {
             _logger = logger;
-            this._dbContext = dbContext;
+            this._welcomeService = welcomeService;
+
         }
 
-        public  IActionResult Index()
+        public IActionResult Index()
         {
 
             return View();
@@ -31,22 +34,13 @@ namespace Web_Library.Controllers
         }
 
 
+        [HttpGet]
         public async Task<IActionResult> EnterPreview()
         {
-
-            IEnumerable<PreviewBookModel> bookCollection = await _dbContext.Books.AsNoTracking().
-               Where(b => b.CoverImageUrl != null).OrderByDescending(b=>b.Id).Select(b => new PreviewBookModel()
-               {
-
-                   Id = b.Id,
-                   CoverImageUrl = b.CoverImageUrl,
-                   Title = b.Title
-
-               }).Take(5).OrderBy(pm=>pm.Title).ToArrayAsync();
-
+            IEnumerable<PreviewBookModel> bookCollection = await _welcomeService.GetLatestTitlesPreviewAsync();
 
             return View(bookCollection);
-            
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

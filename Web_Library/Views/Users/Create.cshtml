@@ -18,6 +18,8 @@
         <h1>User Registration</h1>
 
         <form asp-action="Create" method="post">
+        
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="mb-3">
                 <label asp-for="FirstName"></label>
