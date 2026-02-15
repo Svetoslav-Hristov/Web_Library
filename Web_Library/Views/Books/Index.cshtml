@@ -31,7 +31,7 @@
 
 @if (!string.IsNullOrEmpty(successDelete))
 {
-<div class="alert alert-success" role="alert">
+    <div class="alert alert-success" role="alert">
         @successDelete
     </div>
 }
@@ -103,11 +103,9 @@
         </div>
     </div>
 
-    <!-- MAIN CONTENT -->
+
     <div class="flex-grow-1">
         <div class="container">
-
-            <!-- SEARCH -->
             <form asp-action="Index" method="get" class="d-flex gap-2 mb-3">
                 <input type="text"
                        name="search"
@@ -120,13 +118,13 @@
                 </button>
             </form>
 
-            <!-- HEADER -->
+           
             <div class="d-flex align-items-center justify-content-between mb-3">
                 <h1 class="mb-0">Books Catalog</h1>
 
             </div>
 
-            <!-- TABLE -->
+           
             @if (!Model.Any())
             {
                 <p class="text-muted">No books yet.</p>
