@@ -11,9 +11,9 @@ namespace Web_Library.ViewModels.System
        
         public string? BookTitle { get; set; }
 
-        [Required]
+       
         [StringLength(EmailAddressMaxLength, MinimumLength = PhoneNumberMinLength)]
-        public string SearchingCriteria { get; set; } = null!;
+        public string? SearchingCriteria { get; set; }
 
         [Required]
         public Guid UserId { get; set; }

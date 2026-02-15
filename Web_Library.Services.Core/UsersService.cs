@@ -265,7 +265,7 @@ namespace Web_Library.Services.Core
             if (isEmailExist)
             {
 
-                return new ServiceResult<UserFormModel> { Success = false, ErrorMessage = "Email already exists.", Data = model };
+                return new ServiceResult<UserFormModel> { Success = false, ErrorMessage = "This email belongs to another user !", Data = model };
 
             }
 

@@ -11,7 +11,7 @@ This project demonstrates a layered architecture using ASP.NET Core MVC and Enti
 - Users can borrow books
 - Reservation system
 - Book availability tracking
-- CRUD operations for books
+- CRUD operations for books, users and reservations
 - Service layer abstraction
 
 ---
@@ -24,42 +24,42 @@ This project demonstrates a layered architecture using ASP.NET Core MVC and Enti
 ---
 
 ## Setup
-1. Configure connection string
-2. Run migrations
+1. Configure connection string (use your local server settings)  
+2. Apply migrations: "Update-Database" 
 3. Start the application
 
 ---
 
 ---
 
-# Система за управление на библиотека
+# РЎРёСЃС‚РµРјР° Р·Р° СѓРїСЂР°РІР»РµРЅРёРµ РЅР° Р±РёР±Р»РёРѕС‚РµРєР°
 
-## Описание
-Уеб приложение за управление на малка библиотечна система.
+## РћРїРёСЃР°РЅРёРµ
+РЈРµР± РїСЂРёР»РѕР¶РµРЅРёРµ Р·Р° СѓРїСЂР°РІР»РµРЅРёРµ РЅР° РјР°Р»РєР° Р±РёР±Р»РёРѕС‚РµС‡РЅР° СЃРёСЃС‚РµРјР°.
 
-Проектът е създаден с учебна цел и демонстрира използването на слоеста архитектура (Layered Architecture) 
+РџСЂРѕРµРєС‚СЉС‚ Рµ СЃСЉР·РґР°РґРµРЅ СЃ СѓС‡РµР±РЅР° С†РµР» Рё РґРµРјРѕРЅСЃС‚СЂРёСЂР° РёР·РїРѕР»Р·РІР°РЅРµС‚Рѕ РЅР° СЃР»РѕРµСЃС‚Р° Р°СЂС…РёС‚РµРєС‚СѓСЂР° (Layered Architecture) 
 
-с ASP.NET Core MVC и Entity Framework Core.
-
----
-
-## Функционалности
-- Потребителите могат да заемат книги
-- Система за резервации
-- Проследяване на наличност на книги
-- CRUD операции за книги
-- Service слой за бизнес логика
+СЃ ASP.NET Core MVC Рё Entity Framework Core.
 
 ---
 
-## Технологии
+## Р¤СѓРЅРєС†РёРѕРЅР°Р»РЅРѕСЃС‚Рё
+- РџРѕС‚СЂРµР±РёС‚РµР»РёС‚Рµ РјРѕРіР°С‚ РґР° Р·Р°РµРјР°С‚ РєРЅРёРіРё
+- РЎРёСЃС‚РµРјР° Р·Р° СЂРµР·РµСЂРІР°С†РёРё
+- РџСЂРѕСЃР»РµРґСЏРІР°РЅРµ РЅР° РЅР°Р»РёС‡РЅРѕСЃС‚ РЅР° РєРЅРёРіРё
+- CRUD РѕРїРµСЂР°С†РёРё Р·Р° РєРЅРёРіРё, РїРѕС‚СЂРµР±РёС‚РµР»Рё Рё СЂРµР·РµСЂРІР°С†РёРё
+- Service СЃР»РѕР№ Р·Р° Р±РёР·РЅРµСЃ Р»РѕРіРёРєР°
+
+---
+
+## РўРµС…РЅРѕР»РѕРіРёРё
 - ASP.NET Core MVC
 - Entity Framework Core
 - SQL Server
 
 ---
 
-## Стартиране
-1. Конфигурирайте connection string
-2. Стартирайте migrations
-3. Стартирайте приложението
+## РЎС‚Р°СЂС‚РёСЂР°РЅРµ
+1. РљРѕРЅС„РёРіСѓСЂРёСЂР°Р№С‚Рµ connection string-a (РёР·РїРѕР»Р·РІР°Р№РєРё РЅР°СЃС‚СЂРѕР№РєРёС‚Рµ РЅР° Р»РѕРєР°Р»РЅРёСЏ РІРё СЃСЉСЂРІСЉСЂ)
+2. РћР±РЅРѕРІРµС‚Рµ Р±Р°Р·Р°С‚Р° РґР°РЅРЅРё: "Update-Database"
+3. РЎС‚Р°СЂС‚РёСЂР°Р№С‚Рµ РїСЂРёР»РѕР¶РµРЅРёРµС‚Рѕ
