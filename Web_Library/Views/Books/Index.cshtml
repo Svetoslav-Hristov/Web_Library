@@ -8,8 +8,18 @@
 
     var errorCreate = TempData["ErrorBook"] as string;
 
+    var wrongBook = TempData["WrongBook"] as string;
+
 }
 
+
+@if (!string.IsNullOrEmpty(wrongBook))
+{
+    <div class="alert alert-danger" role="alert">
+        @wrongBook
+    </div>
+
+}
 
 @if (!string.IsNullOrEmpty(errorCreate))
 {

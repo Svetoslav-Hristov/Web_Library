@@ -39,15 +39,18 @@ namespace Web_Library.Controllers
         public async Task<IActionResult> Details(Guid Id)
         {
 
-            FullPreviewModelBook newBook = await _bookService.GetCurrentModelAsync(Id);
+            var newBook = await _bookService.GetCurrentModelAsync(Id);
 
-            if (newBook == null)
+            if (!newBook.Success)
             {
-                return NotFound("Not found !");
+                TempData["WrongBook"] = newBook.ErrorMessage;
+
+                return RedirectToAction(nameof(Index));
+                
             }
 
 
-            return View(newBook);
+            return View(newBook.Data);
 
         }
 

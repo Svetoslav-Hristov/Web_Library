@@ -15,7 +15,7 @@ namespace Web_Library.Services.Core.Interfaces
     {
         Task<IEnumerable<FullPreviewModelBook>> GetAllBooksOrderedByTitleThanByAuthorAscAsync(string? search, Genre? genre);
 
-        Task<FullPreviewModelBook> GetCurrentModelAsync(Guid Id);
+        Task<ServiceResult<FullPreviewModelBook>> GetCurrentModelAsync(Guid Id);
 
 
         Task<ServiceResult< BookFormModel>> GetEmptyModelBookFormWithLoadedTypesAsync();

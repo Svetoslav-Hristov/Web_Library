@@ -63,16 +63,25 @@ namespace Web_Library.Services.Core
             return books;
         }
 
-        public async Task<FullPreviewModelBook> GetCurrentModelAsync(Guid Id)
+        public async Task<ServiceResult<FullPreviewModelBook>> GetCurrentModelAsync(Guid Id)
         {
+            if (Id == Guid.Empty)
+            {
+
+                return new ServiceResult<FullPreviewModelBook> { Success = false, ErrorMessage = "Invalid book id !" };
+
+
+            }
+
 
             Book? book = await _dbContext.Books.FirstOrDefaultAsync(b => b.Id == Id);
 
             if (book == null)
             {
-                return null!;
+                return new ServiceResult<FullPreviewModelBook> { Success = false, ErrorMessage = "Book not found !" };
 
             }
+
 
             BookStatus? bookStatus = await _dbContext.UsersBooks.AsNoTracking().Where(ub => ub.BookId == Id)
                 .OrderByDescending(ub => ub.Id).Select(ub => (BookStatus?)ub.Status).FirstOrDefaultAsync();
@@ -93,7 +102,7 @@ namespace Web_Library.Services.Core
                 CoverImageUrl = book.CoverImageUrl
             };
 
-            return newBook;
+            return new ServiceResult<FullPreviewModelBook> { Success = true, Data = newBook };
 
         }
 
